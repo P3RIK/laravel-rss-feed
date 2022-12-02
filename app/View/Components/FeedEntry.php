@@ -4,9 +4,8 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Feed extends Component
+class FeedEntry extends Component
 {
-    public $entries;
     /**
      * Create a new component instance.
      *
@@ -24,6 +23,6 @@ class Feed extends Component
      */
     public function render()
     {
-        return view('components.feed');
+        return view('components.feed-entry');
     }
 }
