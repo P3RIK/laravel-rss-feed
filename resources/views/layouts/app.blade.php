@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     </head>
     <body>
-        <h1 class="p-1">RSS-Feed Agregator</h1>
+        <x-header></x-header>
         <div class="container">
             <div class="row">
                 <div class="col-2">
