@@ -15,7 +15,7 @@
                     <x-form />
                 </div>
                 <div class="col-10">
-                    <x-feed :title='$title'/>
+                    <x-feed :feed='$feed' />
                 </div>
             </div>
         </div>

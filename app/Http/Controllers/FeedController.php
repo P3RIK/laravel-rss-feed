@@ -7,16 +7,15 @@ use Vedmant\FeedReader\Facades\FeedReader;
 
 class FeedController extends Controller {
     public function load_feed() {
-        $reader = FeedReader::read('https://news.google.com/news/rss');
-        $title = $reader->get_title();
+        $feed = FeedReader::read('https://feeds.simplecast.com/54nAGcIl');
         return view('layouts.app', [
-            'title' => $title,
+            'feed' => $feed,
         ]);
     }
 
     public function get_entries() {
-        $reader = FeedReader::read('https://news.google.com/news/rss');
-        $ch_title = $reader->get_title();
+        $feed = FeedReader::read('https://news.google.com/news/rss');
+        $ch_title = $feed->get_title();
         return view('layouts.app', [
             'title' => $ch_title,
         ]);

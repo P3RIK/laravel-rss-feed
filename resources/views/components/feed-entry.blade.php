@@ -1,18 +1,16 @@
 <div class="">
     <div class="">
-        <h3 class="">{{ $entry_title }}</h3>
+        <h3 class="">{{ $item->get_title() }}</h3>
 
-        <a href="/" class="">{{ $entry_link }}</a>
+        <a href="{{ $item->get_link() }}" class="">Link</a>
 
-        <p href="/" class="">{{ $ch_title }}</p>
+        <p href="/" class="">{{ $item->get_feed()->get_title() }}</p>
 
-        <p class="">{{ $entry_desc }}</p>
+        <p class="">Categ</p>
 
-        <p class="">{{ $entry_pubdate }}</p>
+        <p class="">{{ $item->get_description() }}</p>
 
-        <ul class="">
-            <li>Tag</li>
-            <li>Tag2</li>
-        </ul>
+        <p class="">{{ $item->get_date() }}</p>
+
     </div>
 </div>
