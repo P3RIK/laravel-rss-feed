@@ -6,6 +6,7 @@ use Illuminate\View\Component;
 
 class FeedEntry extends Component
 {
+    public $ch_title;
     /**
      * Create a new component instance.
      *
@@ -13,7 +14,7 @@ class FeedEntry extends Component
      */
     public function __construct()
     {
-        //
+        // $this->ch_title = $ch_title;
     }
 
     /**

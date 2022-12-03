@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FeedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.app');
-});
+Route::get('/', [FeedController::class, 'load_feed']);
 
-Route::post('/form', function () {
-    return view('layouts.app');
-});
+Route::post('/form/addchannel', [FeedController::class, 'get_entries']);

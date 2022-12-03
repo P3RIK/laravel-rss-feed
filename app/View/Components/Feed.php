@@ -6,15 +6,15 @@ use Illuminate\View\Component;
 
 class Feed extends Component
 {
-    public $entries;
+    public $title;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($title)
     {
-        //
+        $this->title = $title;
     }
 
     /**

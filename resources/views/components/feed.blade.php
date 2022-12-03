@@ -1,5 +1,5 @@
 <div>
-    <h2>Feed</h2>
+    <h2>Feed {{ $title }}</h2>
     <x-feed-entry />
     <x-feed-entry />
     <x-feed-entry />

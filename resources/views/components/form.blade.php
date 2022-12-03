@@ -1,5 +1,5 @@
 <div class="p-2">
-    <form action="/form" method="post">
+    <form action="/form/addchannel" method="post">
         @csrf
         
         <div class="form-group mb-3">

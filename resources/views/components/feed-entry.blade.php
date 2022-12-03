@@ -1,14 +1,14 @@
 <div class="">
     <div class="">
-        <h3 class="">Entry title</h3>
+        <h3 class="">{{ $entry_title }}</h3>
 
-        <a href="/" class="">Link to entry</a>
+        <a href="/" class="">{{ $entry_link }}</a>
 
-        <p href="/" class="">Channel</p>
+        <p href="/" class="">{{ $ch_title }}</p>
 
-        <p class="">Description</p>
+        <p class="">{{ $entry_desc }}</p>
 
-        <p class="">Publication date</p>
+        <p class="">{{ $entry_pubdate }}</p>
 
         <ul class="">
             <li>Tag</li>
