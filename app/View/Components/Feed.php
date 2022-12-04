@@ -7,14 +7,16 @@ use Illuminate\View\Component;
 class Feed extends Component
 {
     public $feed;
+    public $categories;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($feed)
+    public function __construct($feed, $categories)
     {
         $this->feed = $feed;
+        $this->categories = $categories;
     }
 
     /**

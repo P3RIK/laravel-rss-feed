@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Channel extends Model
+class Category extends Model
 {
     use HasFactory;
     public $timestamps = false;
 
-    public function category()
+    public function channels()
     {
-        return $this->belongsTo(Category::class);
+        return $this->hasMany(Channel::class);
     }
 }

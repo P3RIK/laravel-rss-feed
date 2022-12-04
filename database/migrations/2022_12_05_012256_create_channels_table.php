@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('channels', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('link');
-            $table->string('category');
+            $table->foreignId('category_id')->references('id')->on('categories');
         });
     }
 
