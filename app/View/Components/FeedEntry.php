@@ -6,15 +6,15 @@ use Illuminate\View\Component;
 
 class FeedEntry extends Component
 {
-    public $item;
+    public $entry;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($item)
+    public function __construct($entry)
     {
-        $this->item = $item;
+        $this->entry = $entry;
     }
 
     /**

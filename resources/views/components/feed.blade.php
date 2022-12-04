@@ -1,7 +1,7 @@
 <div>
-    <h2>Feed</h2>
-    <p>{{ $feed->get_title() }}</p>
-    @foreach($feed->get_items() as $item)
-        <x-feed-entry :item='$item' />
+    <h3>Feed</h3>
+    
+    @foreach($feed->get_items() as $entry)
+        <x-feed-entry :entry='$entry' />
     @endforeach
 </div>
