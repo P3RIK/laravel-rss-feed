@@ -24,12 +24,13 @@ class FeedController extends Controller {
             }
         }
 
-        $feed = FeedReader::read($links);
+        $feed = FeedReader::read($links)->get_items(0, 30);
 
         $categories = Category::all();
         
         return view('layouts.app', compact('feed', 'categories'));
     }
+
 
     public function add_channel(Request $req) 
     {
@@ -44,6 +45,7 @@ class FeedController extends Controller {
         return redirect()->route('home');
     }
 
+    
     public function unsubscribe(Request $req) {
         $ch = Channel::where('name', $req->feed_name)->firstOrFail();
         $ch->delete();
