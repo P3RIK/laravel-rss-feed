@@ -34,12 +34,17 @@ class FeedController extends Controller {
 
     public function add_channel(Request $req) 
     {
-        $feed = FeedReader::read($req->input('feed_link'));
+        $req->validate([
+            'link' => 'required|unique:channels|url'
+        ]);
+
+
+        $feed = FeedReader::read($req->input('link'));
 
         $ch = new Channel;
         $ch->name = $feed->get_title();
-        $ch->link = $req->input('feed_link');
-        $ch->category_id = $req->input('feed_category');
+        $ch->link = $req->input('link');
+        $ch->category_id = $req->input('category');
         $ch->save();
 
         return redirect()->route('home');

@@ -5,12 +5,12 @@
 
         <div class="form-group mb-3">
             <label for="link">Enter link to RSS feed:</label>
-            <input type="text" name="feed_link" class="form-control">
+            <input type="text" name="link" class="form-control">
         </div>
 
         <div class="form-group mb-3">
-            <label for="feed_category">Choose feed category:</label>
-            <select name="feed_category" class="form-select">
+            <label for="category">Choose feed category:</label>
+            <select name="category" class="form-select">
                 <option value="1">Technology</option>
                 <option value="2">Politics</option>
                 <option value="3">Science</option>
