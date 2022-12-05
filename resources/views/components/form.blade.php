@@ -16,6 +16,16 @@
                 <option value="3">Science</option>
             </select>
         </div>
+        
+        <div>
+            @if($errors->any())
+                <ul>
+                @foreach($errors->all() as $error)
+                    <li class="alert alert-danger">{{$error}}</li>
+                @endforeach
+                </ul>
+            @endif
+        </div>
 
         <button type="submit" class="btn btn-success">Add channel</button>
     </form>
