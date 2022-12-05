@@ -11,7 +11,7 @@ class FeedController extends Controller {
 
     public function load_feed(Request $req) 
     {
-        $links = array();
+        $links = [];
 
         if($req->category) {
             $channels = Category::where('name', $req->category)->firstOrFail()->channels()->paginate();
@@ -51,7 +51,8 @@ class FeedController extends Controller {
     }
 
     
-    public function unsubscribe(Request $req) {
+    public function unsubscribe(Request $req) 
+    {
         $ch = Channel::where('name', $req->feed_name)->firstOrFail();
         $ch->delete();
 
