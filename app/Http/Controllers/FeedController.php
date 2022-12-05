@@ -9,14 +9,14 @@ use App\Models\Category;
 
 class FeedController extends Controller {
 
-    public function index(Request $req) 
+    public function index(Request $request) 
     {
         $links = [];
 
         $categories = Category::all();
 
-        if($req->category) {
-            $channels = Category::where('name', $req->category)->firstOrFail()->channels()->paginate();
+        if($request->category) {
+            $channels = Category::where('name', $request->category)->firstOrFail()->channels()->paginate();
             foreach ($channels as $channel) {
                 array_push($links, $channel->link);
             }
@@ -32,29 +32,29 @@ class FeedController extends Controller {
     }
 
 
-    public function store(Request $req) 
+    public function store(Request $request) 
     {
-        $req->validate([
+        $request->validate([
             'link' => 'required|unique:channels|url'
         ]);
 
 
-        $feed = FeedReader::read($req->input('link'));
+        $feed = FeedReader::read($request->input('link'));
 
-        $ch = new Channel;
-        $ch->name = $feed->get_title();
-        $ch->link = $req->input('link');
-        $ch->category_id = $req->input('category');
-        $ch->save();
+        $channel = new Channel;
+        $channel->name = $feed->get_title();
+        $channel->link = $request->input('link');
+        $channel->category_id = $request->input('category');
+        $channel->save();
 
         return redirect()->route('index');
     }
 
     
-    public function destroy(Request $req) 
+    public function destroy(Request $request) 
     {
-        $ch = Channel::where('name', $req->feed_name)->firstOrFail();
-        $ch->delete();
+        $channel = Channel::where('name', $request->feed_name)->firstOrFail();
+        $channel->delete();
 
         return redirect()->route('index');
     }
