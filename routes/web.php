@@ -14,8 +14,4 @@ use App\Http\Controllers\FeedController;
 |
 */
 
-Route::get('/', [FeedController::class, 'load_feed'])->name('home');
-
-Route::get('/unsubscribe/{feed_name}', [FeedController::class, 'unsubscribe'])->name('unsubscribe');
-
-Route::post('/form/addchannel', [FeedController::class, 'add_channel'])->name('addchannel');
+Route::resource('/', FeedController::class)->only(['index', 'store', 'destroy']);

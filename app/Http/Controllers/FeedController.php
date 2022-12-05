@@ -9,9 +9,11 @@ use App\Models\Category;
 
 class FeedController extends Controller {
 
-    public function load_feed(Request $req) 
+    public function index(Request $req) 
     {
         $links = [];
+
+        $categories = Category::all();
 
         if($req->category) {
             $channels = Category::where('name', $req->category)->firstOrFail()->channels()->paginate();
@@ -25,14 +27,12 @@ class FeedController extends Controller {
         }
 
         $feed = FeedReader::read($links)->get_items(0, 30);
-
-        $categories = Category::all();
         
         return view('layouts.app', compact('feed', 'categories'));
     }
 
 
-    public function add_channel(Request $req) 
+    public function store(Request $req) 
     {
         $req->validate([
             'link' => 'required|unique:channels|url'
@@ -47,15 +47,15 @@ class FeedController extends Controller {
         $ch->category_id = $req->input('category');
         $ch->save();
 
-        return redirect()->route('home');
+        return redirect()->route('index');
     }
 
     
-    public function unsubscribe(Request $req) 
+    public function destroy(Request $req) 
     {
         $ch = Channel::where('name', $req->feed_name)->firstOrFail();
         $ch->delete();
 
-        return redirect()->route('home');
+        return redirect()->route('index');
     }
 }
