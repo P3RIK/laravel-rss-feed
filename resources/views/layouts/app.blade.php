@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-2">
-                    <x-form />
+                    <x-form :categories='$categories' />
                 </div>
                 <div class="col-10">
                     <x-feed :feed='$feed' :categories='$categories' />

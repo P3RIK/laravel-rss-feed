@@ -1,6 +1,6 @@
 <div class="p-2">
     <h3>Form</h3>
-    <form action="{{ route('addchannel') }}" method="post">
+    <form action="{{ route('store') }}" method="post">
         @csrf
 
         <div class="form-group mb-3">
