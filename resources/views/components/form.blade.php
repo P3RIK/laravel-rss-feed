@@ -5,24 +5,24 @@
 
         <div class="form-group mb-3">
             <label for="link">Enter link to RSS feed:</label>
-            <input type="text" name="link" class="form-control">
+            <input type="url" name="link" class="form-control">
         </div>
 
         <div class="form-group mb-3">
             <label for="category">Choose feed category:</label>
             <select name="category" class="form-select">
-                <option value="1">Technology</option>
-                <option value="2">Politics</option>
-                <option value="3">Science</option>
+                @foreach($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
             </select>
         </div>
         
         <div>
             @if($errors->any())
                 <ul>
-                @foreach($errors->all() as $error)
-                    <li class="alert alert-danger">{{$error}}</li>
-                @endforeach
+                    @foreach($errors->all() as $error)
+                        <li class="alert alert-danger">{{$error}}</li>
+                    @endforeach
                 </ul>
             @endif
         </div>
