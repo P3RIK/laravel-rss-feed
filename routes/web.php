@@ -14,4 +14,6 @@ use App\Http\Controllers\FeedController;
 |
 */
 
-Route::resource('/', FeedController::class)->only(['index', 'store', 'destroy']);
+Route::redirect('/', '/feed');
+
+Route::resource('/feed', FeedController::class)->only(['index', 'store', 'destroy']);
