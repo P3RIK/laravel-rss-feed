@@ -18,10 +18,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
         });
-
-        DB::statement("INSERT INTO categories (name) VALUES ('Technology');");
-        DB::statement("INSERT INTO categories (name) VALUES ('Politics');");
-        DB::statement("INSERT INTO categories (name) VALUES ('Science');");
     }
 
     /**
