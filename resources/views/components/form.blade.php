@@ -10,7 +10,7 @@
 
         <div class="form-group mb-3">
             <label for="category">Choose feed category:</label>
-            <select name="category" class="form-select">
+            <select name="category_id" class="form-select">
                 @foreach($categories as $category)
                     <option value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach

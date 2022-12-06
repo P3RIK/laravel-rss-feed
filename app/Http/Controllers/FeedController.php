@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreChannelRequest;
 use App\Jobs\FetchChannelEntries;
 use Illuminate\Http\Request;
 use App\Models\Channel;
@@ -32,18 +33,13 @@ class FeedController extends Controller
     }
 
 
-    public function store(Request $request) 
+    public function store(StoreChannelRequest $request) 
     {
-        $request->validate([
-            'link' => 'required|unique:channels|url'
-        ]);
-
-        $channel = new Channel;
-        $channel->name = FeedReader::read($request->input('link'))->get_title();
-        $channel->link = $request->input('link');
-        $channel->category_id = $request->input('category');
-        $channel->save();
-
+        $validated = $request->validated();
+        $feed = FeedReader::read($request->input('link'));
+        $validated['name'] = $feed->get_title();
+        
+        $channel = Channel::create($validated);
         dispatch(new FetchChannelEntries($channel));
 
         return redirect()->route('feed.index');

@@ -9,6 +9,7 @@ class Channel extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $fillable = ['link', 'name', 'category_id'];
 
     public function category()
     {
