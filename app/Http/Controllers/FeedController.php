@@ -2,33 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\FetchChannelEntries;
 use Illuminate\Http\Request;
-use Vedmant\FeedReader\Facades\FeedReader;
 use App\Models\Channel;
 use App\Models\Category;
+use App\Models\Entry;
+use Vedmant\FeedReader\Facades\FeedReader;
 
-class FeedController extends Controller {
+class FeedController extends Controller 
+{
 
     public function index(Request $request) 
     {
-        $links = [];
-
+        $entries = Entry::orderBy('publication_date')->get();
         $categories = Category::all();
 
-        if($request->category) {
-            $channels = Category::where('name', $request->category)->firstOrFail()->channels()->paginate();
-            foreach ($channels as $channel) {
-                array_push($links, $channel->link);
-            }
-        } else {
-            foreach (Channel::all() as $channel) {
-                array_push($links, $channel->link);
+        if ($request->category) {
+            $category = $categories->where('name', $request->category)->firstOrFail();
+            $channels = $category->channels;
+            if($channels->count() != 0)
+            {
+                $entries = Entry::whereBelongsTo($channels)->orderBy('publication_date')->get();
+            } else {
+                $entries = [];
             }
         }
-
-        $feed = FeedReader::read($links)->get_items(0, 30);
         
-        return view('layouts.app', compact('feed', 'categories'));
+        return view('layouts.app', compact('entries', 'categories'));
     }
 
 
@@ -38,24 +38,22 @@ class FeedController extends Controller {
             'link' => 'required|unique:channels|url'
         ]);
 
-
-        $feed = FeedReader::read($request->input('link'));
-
         $channel = new Channel;
-        $channel->name = $feed->get_title();
+        $channel->name = FeedReader::read($request->input('link'))->get_title();
         $channel->link = $request->input('link');
         $channel->category_id = $request->input('category');
         $channel->save();
 
-        return redirect()->route('index');
+        dispatch(new FetchChannelEntries($channel));
+
+        return redirect()->route('feed.index');
     }
 
     
-    public function destroy(Request $request) 
+    public function destroy($channel_id) 
     {
-        $channel = Channel::where('name', $request->feed_name)->firstOrFail();
-        $channel->delete();
+        Channel::destroy($channel_id);
 
-        return redirect()->route('index');
+        return redirect()->route('feed.index');
     }
 }
