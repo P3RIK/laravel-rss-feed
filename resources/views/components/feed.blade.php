@@ -5,16 +5,16 @@
             Categories
         </a>
 
-        <a class="btn btn-secondary" href="{{ route('index') }}">Reset</a>
+        <a class="btn btn-secondary" href="{{ route('feed.index') }}">Reset</a>
         
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             @foreach($categories as $category)
-                <a class="dropdown-item" href="{{ route('index', ['category' => $category->name]) }}">{{ $category->name }}</a>
+                <a class="dropdown-item" href="{{ route('feed.index', ['category' => $category->name]) }}">{{ $category->name }}</a>
             @endforeach
         </div>
     </div>
     
-    @foreach($feed as $entry)
+    @foreach($entries as $entry)
         <x-feed-entry :entry='$entry' />
     @endforeach
 </div>

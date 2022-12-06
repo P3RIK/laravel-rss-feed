@@ -6,16 +6,16 @@ use Illuminate\View\Component;
 
 class Feed extends Component
 {
-    public $feed;
+    public $entries;
     public $categories;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($feed, $categories)
+    public function __construct($entries, $categories)
     {
-        $this->feed = $feed;
+        $this->entries = $entries;
         $this->categories = $categories;
     }
 

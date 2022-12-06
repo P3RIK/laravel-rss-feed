@@ -15,7 +15,7 @@
                     <x-form :categories='$categories' />
                 </div>
                 <div class="col-10">
-                    <x-feed :feed='$feed' :categories='$categories' />
+                    <x-feed :entries='$entries' :categories='$categories' />
                 </div>
             </div>
         </div>
